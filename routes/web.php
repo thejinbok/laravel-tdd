@@ -1,6 +1,9 @@
 <?php
 
+use App\Mail\Invitation;
+use App\Models\Invite;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +31,9 @@ Route::post('register', function () {
 
     return redirect('dashboard');
 })->name('register');
+
+Route::post('invite', function () {
+    Mail::to(request()->email)->send(new Invitation());
+
+    Invite::create(['email' => request()->email]);
+})->name('invite');
