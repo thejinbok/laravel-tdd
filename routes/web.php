@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('register', function () {
+    User::query()->create([
+        'name' => request()->name,
+        'email' => request()->email,
+        'email_confirmation' => request()->email_confirmation,
+        'password' => bcrypt(request()->password),
+    ]);
+
+    return redirect('dashboard');
+})->name('register');
