@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
 use App\Mail\Invitation;
 use App\Models\Invite;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -21,16 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('register', function () {
-    User::query()->create([
-        'name' => request()->name,
-        'email' => request()->email,
-        'email_confirmation' => request()->email_confirmation,
-        'password' => bcrypt(request()->password),
-    ]);
-
-    return redirect('dashboard');
-})->name('register');
+Route::post('register', RegisterController::class)->name('register');
 
 Route::post('invite', function () {
     Mail::to(request()->email)->send(new Invitation());
