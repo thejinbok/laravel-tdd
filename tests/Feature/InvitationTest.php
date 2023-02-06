@@ -4,14 +4,11 @@ namespace Tests\Feature;
 
 use App\Mail\Invitation;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class InvitationTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_any_user_should_be_able_to_invite_someone_to_the_platform()
     {
         # Arrange

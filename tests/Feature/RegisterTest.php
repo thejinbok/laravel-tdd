@@ -3,14 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function test_anyone_should_be_able_to_register_as_a_new_user()
     {
         $response = $this->post(route('register'), [
