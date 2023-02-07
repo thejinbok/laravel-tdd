@@ -27,13 +27,15 @@ Route::get('/', function () {
 
 Route::post('register', RegisterController::class)->name('register');
 
-Route::post('invite', function () {
-    Mail::to(request()->email)->send(new Invitation());
+Route::middleware('auth')->group(function () {
+    Route::post('invite', function () {
+        Mail::to(request()->email)->send(new Invitation());
 
-    Invite::create(['email' => request()->email]);
-})->name('invite');
+        Invite::create(['email' => request()->email]);
+    })->name('invite');
 
-Route::get('todo', IndexController::class)->name('todo.index');
-Route::post('todo', CreateController::class)->name('todo.store');
-Route::put('todo/{todo}', UpdateController::class)->name('todo.update');
-Route::delete('todo/{todo}', DeleteController::class)->name('todo.destroy');
+    Route::get('todo', IndexController::class)->name('todo.index');
+    Route::post('todo', CreateController::class)->name('todo.store');
+    Route::put('todo/{todo}', UpdateController::class)->name('todo.update');
+    Route::delete('todo/{todo}', DeleteController::class)->name('todo.destroy');
+});
