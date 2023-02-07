@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Todo\CreateController;
+use App\Http\Controllers\Todo\DeleteController;
 use App\Http\Controllers\Todo\IndexController;
 use App\Http\Controllers\Todo\UpdateController;
 use App\Mail\Invitation;
@@ -35,3 +36,4 @@ Route::post('invite', function () {
 Route::get('todo', IndexController::class)->name('todo.index');
 Route::post('todo', CreateController::class)->name('todo.store');
 Route::put('todo/{todo}', UpdateController::class)->name('todo.update');
+Route::delete('todo/{todo}', DeleteController::class)->name('todo.destroy');
