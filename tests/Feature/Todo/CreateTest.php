@@ -57,5 +57,9 @@ class CreateTest extends TestCase
 
         # Assert
         Storage::disk('s3')->assertExists('todo/fake-image.png');
+
+        $this->assertDatabaseHas('todos', [
+            'file' => 'todo/fake-image.png',
+        ]);
     }
 }
