@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->unsignedBigInteger('assigned_to_id');
+            $table->string('file')->nullable();
             $table->timestamps();
 
             $table->foreign('assigned_to_id')->references('id')->on('users');
